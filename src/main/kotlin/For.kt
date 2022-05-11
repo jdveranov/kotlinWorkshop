@@ -13,7 +13,7 @@ fun main() {
         val list: List<String> = listOf("One", "Two", "Three")
 
         println(list.asReversed().toString())
-    }
+
 
 
     /*val lista: ListOf<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8)
