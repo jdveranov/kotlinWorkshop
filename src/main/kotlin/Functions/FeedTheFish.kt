@@ -2,6 +2,7 @@ package Functions
 
 import java.util.*
 
+
 fun randomDay() : String {
     val week = arrayOf ("Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday")
