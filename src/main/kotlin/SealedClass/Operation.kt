@@ -1,3 +1,5 @@
+package SealedClass
+
 sealed class Operation {
     class Add(val value: Int) : Operation()
     class Substract(val value: Int) : Operation()
