@@ -5,20 +5,21 @@ fun main() {
     genericsExample()
 }
 
- fun genericsExample() {
-     val aquarium4 = Aquarium(LakeWater())
-     aquarium4.waterSupply.filter()
-     aquarium4.addWater()
- }
+fun genericsExample() {
+    val cleaner = TapWaterCleaner()
+    val aquarium = Aquarium(TapWater())
+    aquarium.addWater(cleaner)
 
 
 
 open class WaterSupply (var needsProcessing: Boolean)
 
-class Aquarium<T: WaterSupply>(val waterSupply: T) {
-    fun addWater() {
-        check(!waterSupply.needsProcessing) { "water supply needs processing first" }
-        println("adding water from $waterSupply")
+class Aquarium<out T: WaterSupply>(val waterSupply: T) {
+    fun addWater(cleaner: Cleaner<T>) {
+        if (waterSupply.needsProcessing) {
+            cleaner.clean(waterSupply)
+        }
+        println("water added")
     }
 }
 
@@ -38,4 +39,12 @@ class LakeWater : WaterSupply(true) {
     }
 }
 
+fun addItemTo(aquarium: Aquarium<WaterSupply>) = println("item added")
 
+interface Cleaner<T: WaterSupply> {
+    fun clean(waterSupply: T)
+}
+
+class TapWaterCleaner : Cleaner<TapWater> {
+    override fun clean(waterSupply: TapWater) = waterSupply.addChemicalCleaners()
+}
