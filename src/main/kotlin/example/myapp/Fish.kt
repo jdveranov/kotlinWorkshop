@@ -16,6 +16,13 @@ fun myWith(name: String, block: String.() -> Unit) {
     name.block()
 }
 
-fun main(){
-    fishExamples()
+fun runExample() {
+    JavaRun.runNow {
+        println("Last parameter is a lambda as a Runnable")
+    }
 }
+
+fun main(){
+    runExample()
+}
+
